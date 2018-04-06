@@ -38,16 +38,16 @@ for i in range(280,313):
 
 # [4.555431608200073, 0.39960000000000001, 0.63949999999999996]
 
-transfer_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'top_k_categorical_accuracy'])
+transfer_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 
 ################### training last two layers ###################
 epoch = 20
 num_classes = 2
 # onehot encoding
-y_onehot = np.zeros((y_train.shape[0], num_classes))
+y_onehot = np.zeros((y_data.shape[0], num_classes))
 for i in range(0,num_classes):
-	(y_onehot[:,i:i+1])[y_train==i] = 1
+	(y_onehot[:,i:i+1])[y_data==i] = 1
 
 # using checkpoints and early stopping on validation sample to prevent overfitting
 # best weight is saved to file_path
@@ -57,7 +57,7 @@ early = EarlyStopping(monitor="val_loss", mode="min", patience=2)
 callbacks_list = [checkpoint, early] #early
 
 
-transfer_model.fit(x_train, y_onehot, epochs=epoch, validation_split=0.1, batch_size=32, callbacks=callbacks_list)
+transfer_model.fit(x_data, y_onehot, epochs=epoch, validation_split=0.1, batch_size=32, callbacks=callbacks_list)
 # load best weights
 transfer_model.load_weights(file_path)
 
