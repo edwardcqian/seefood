@@ -3,7 +3,7 @@
 ## Overview
 
 This is a classifier which predicts whether a given image is a hot dog. The weights for the model is saved in the .hdf5 file.
-The classifier was built using transfer learning on the ImageNet model Inception V3 and fine tuned with additional images. 
+The classifier was built using transfer learning on the Inception V3 model and fine tuned with additional images. 
 
 ## Usage
 
@@ -16,7 +16,7 @@ A sample of images from both groups can be found from the data folder.
 
 The output layer from Inception V3 will be replaced by a layer relevant to hot dogs. 
 
-Understandably, we took a excellent model and made it into an useless one. 
+Understandably, we took a excellent model and turned it into an useless one. 
 
 Ideation is from the show Silicon Valley. 
  
